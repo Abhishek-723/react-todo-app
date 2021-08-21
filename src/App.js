@@ -3,26 +3,28 @@ import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import './App.css';
 import Todo from './Todo';
 import db from './firebase';
+import firebase from 'firebase';
 
 function App() {
-    const[todos, setTodos] = useState([]);
+    const[todos, setTodos] = useState(['abc', 'def']);
     const[input, setInput] = useState('');
     console.log(input);
 
     useEffect(() => {
-        console.log("snapshot");
-        db.collection('todos').onSnapshot(snapshot => {
-            // console.log(snapshot.docs.map(doc => doc.data()),
-            setTodos(snapshot.docs.map(doc => doc.data().todo))
+        // console.log("snapshot");
+        db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+            setTodos(snapshot.docs.map(doc =>({id:doc.id, todo:doc.data().todo})));
         })
     }, [])
 
     const addTodo = (event) => {
         event.preventDefault();
 
-        // db.collection('todos').add({
-        //     todo: input
-        // })
+        db.collection('todos').add({
+            todo: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        setInput('');
     }
 
   return (
@@ -39,7 +41,7 @@ function App() {
       </form>
       <ul>
           {todos.map(todo => (
-              <Todo text={todo} />
+              <Todo todo={todo} />
           ))} 
       </ul>
     </div>

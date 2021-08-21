@@ -1,13 +1,13 @@
 import firebase from 'firebase'
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyDhMJdu0tPTEZam4wEX6lR7P2e6IMN5Bl4",
-    authDomain: "todo-app-cp-eb6ad.firebaseapp.com",
-    projectId: "todo-app-cp-eb6ad",
-    storageBucket: "todo-app-cp-eb6ad.appspot.com",
-    messagingSenderId: "559939314079",
-    appId: "1:559939314079:web:9caed2c43374f30206ddaa",
-    measurementId: "G-9WX68K82D3"
+    apiKey: "AIzaSyDTU5tRk-RiMTPH3WDDHZDiyWqoX4P69P4",
+    authDomain: "todo-app-cp-5009d.firebaseapp.com",
+    projectId: "todo-app-cp-5009d",
+    storageBucket: "todo-app-cp-5009d.appspot.com",
+    messagingSenderId: "6553068443",
+    appId: "1:6553068443:web:a3263430d53dd7cb56773e",
+    measurementId: "G-YB8XQR7CN2"
 });
 
 const db = firebaseApp.firestore();
